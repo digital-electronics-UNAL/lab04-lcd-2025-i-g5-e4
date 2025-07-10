@@ -1,4 +1,4 @@
-module LCD1602_controller #(parameter NUM_COMMANDS = 4, 
+ module LCD1602_controller #(parameter NUM_COMMANDS = 4, 
                                       NUM_DATA_ALL = 32,  
                                       NUM_DATA_PERLINE = 16,
                                       DATA_BITS = 8,
