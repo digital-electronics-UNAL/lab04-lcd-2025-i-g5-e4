@@ -54,7 +54,7 @@ module LCD_controller #(
     reg [7:0] data_index;
 
     // Conteo y color
-    reg [7:0] contador;
+    reg [9:0] contador;
     reg [1:0] color_state;
 
     // Contador de 3 segundos (con 16ms por tick, se necesitan ~187.5 ticks)
@@ -149,7 +149,7 @@ module LCD_controller #(
                         update_ticks <= 0;
                         // Actualizar contador
                         contador <= contador + 1;
-                        if (contador >= 99)
+                        if (contador >= 999)
                             contador <= 0;
 
                         // Actualizar color
@@ -164,8 +164,9 @@ module LCD_controller #(
                             dynamic_text_line2[i*8 +: 8] <= " ";
 
                         dynamic_text_line1[0 +: 8*8] <= " :oetnoC";
-                        dynamic_text_line1[8*8 +: 8] <= (contador / 10) + 8'd48;
-                        dynamic_text_line1[9*8 +: 8] <= (contador % 10) + 8'd48;
+                        dynamic_text_line1[8*8 +: 8] <= (contador / 100) + 8'd48;
+                        dynamic_text_line1[9*8 +: 8] <= (contador / 10) + 8'd48;
+                        dynamic_text_line1[10*8 +: 8] <= (contador % 10) + 8'd48;
 
                         dynamic_text_line2[0 +: 8*7] <= " :roloC";
 
